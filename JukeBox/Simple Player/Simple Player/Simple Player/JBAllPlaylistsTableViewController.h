@@ -16,6 +16,8 @@
 {
     // I need some sort of an array to hold all the playlists
     SPPlaylistContainer *playlistContainer;
+    
+    // The JukeBox session/room to whose queue we are pushing a song
 }
 
 @end

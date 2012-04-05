@@ -12,7 +12,7 @@
 #import "SPTrack.h"
 #import "SPArtist.h"
 
-@interface JBAllSongsInPlaylistViewController : UITableViewController
+@interface JBAllSongsInPlaylistViewController : UITableViewController <UIActionSheetDelegate>
 {
     SPPlaylist *currentPlaylist;
 }

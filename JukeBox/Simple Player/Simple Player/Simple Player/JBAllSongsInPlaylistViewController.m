@@ -143,14 +143,35 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    NSString *selectedSongTitle = [[[[currentPlaylist items] objectAtIndex:indexPath.row] item] name];
+    NSString *title = [NSString stringWithFormat:@"Are you sure you want to add %@ to this JukeBox?", selectedSongTitle];
+    UIActionSheet *actionSheetAreYouSure = [[UIActionSheet alloc] initWithTitle:title
+                                                                       delegate:self
+                                                              cancelButtonTitle:@"No, don't add it!"
+                                                         destructiveButtonTitle:@"Yes, add it!"
+                                                              otherButtonTitles:nil];
+    
+    [actionSheetAreYouSure showInView:self.view];
+    [actionSheetAreYouSure release];
+}
+
+
+#pragma mark - UIActionSheet Delegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            NSLog(@"Yes, add it!");
+            break;
+        case 1:
+            NSLog(@"No, don't add it!");
+            break;
+        default:
+            break;
+    }
 }
 
 @end
