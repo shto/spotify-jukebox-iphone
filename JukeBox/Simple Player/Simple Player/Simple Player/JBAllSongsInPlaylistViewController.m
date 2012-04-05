@@ -1,15 +1,20 @@
 //
-//  JBCurrentQueueController.m
+//  JBAllSongsInPlaylistViewController.m
 //  JukeBox
 //
-//  Created by Andrei on 3/29/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by Andrei on 4/5/12.
+//  Copyright (c) 2012 Spotify. All rights reserved.
 //
 
-#import "JBCurrentQueueController.h"
+#import "JBAllSongsInPlaylistViewController.h"
 
+@interface JBAllSongsInPlaylistViewController ()
 
-@implementation JBCurrentQueueController
+@end
+
+@implementation JBAllSongsInPlaylistViewController
+
+@synthesize currentPlaylist;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -19,16 +24,6 @@
     }
     return self;
 }
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
-#pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
@@ -48,29 +43,8 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-}
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
@@ -78,61 +52,52 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    // Return the number of sections.
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    switch (section) {
-        case 0:
-            return 1;
-            break;
-        case 1:
-            return 3;
-            break;
-    }
-    
-    return 0;
+    // Return the number of rows in the section.
+    return [[currentPlaylist items] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
-        
+    
     // Configure the cell...
-    switch (indexPath.section) {
-        case 0:
-            cell.textLabel.text = @"Current song";
-            break;
-        case 1:
-            cell.textLabel.text = [NSString stringWithFormat:@"Queued Song %d", (indexPath.row + 1)];
-            break;
-        default:
-            break;
+    SPPlaylistItem *playlistItemAtLocation = [[currentPlaylist items] objectAtIndex:indexPath.row];
+    cell.textLabel.text = playlistItemAtLocation.item.name;
+    if ([playlistItemAtLocation.item class] == [SPTrack class])
+    {
+        SPTrack *trackAtLocation = (SPTrack *)playlistItemAtLocation.item;
+        NSArray *allArtistsOfTrack = trackAtLocation.artists;
+        
+        NSString *artistsNameCombined = @"";
+        if ([allArtistsOfTrack count] == 1)
+        {
+            artistsNameCombined = [[allArtistsOfTrack objectAtIndex:0] name];
+        }
+        else 
+        {
+            NSMutableArray *arrayOfArtistNames = [[NSMutableArray alloc] init];
+            for (SPArtist *artist in allArtistsOfTrack) {
+                [arrayOfArtistNames addObject:artist.name];
+            }
+            
+            artistsNameCombined = [arrayOfArtistNames componentsJoinedByString:@","];
+            [arrayOfArtistNames release];
+        }
+        
+        cell.detailTextLabel.text = artistsNameCombined;
     }
     
     return cell;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    switch (section) {
-        case 0:
-            return @"Now Playing";
-            break;
-        case 1:
-            return @"Queued Songs";
-            break;
-        default:
-            break;
-    }
-    
-    return @"";
 }
 
 /*

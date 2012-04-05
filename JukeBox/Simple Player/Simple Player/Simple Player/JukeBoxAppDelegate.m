@@ -69,9 +69,12 @@
 
 	sharedSession = [SPSession sharedSession];
 	[sharedSession setDelegate:self];
-    [self addObserver:self forKeyPath:@"sharedSession.userPlaylists.loaded" options:0 context:nil];
+    [self addObserver:self 
+           forKeyPath:@"sharedSession.userPlaylists.loaded" 
+              options:NSKeyValueObservingOptionNew 
+              context:nil];
 	
-	[self performSelector:@selector(showLogin) withObject:nil afterDelay:1.0];
+	[self performSelector:@selector(showLogin) withObject:nil afterDelay:0.0];
 	
     return YES;
 }
@@ -82,9 +85,23 @@
 											   animated:NO];
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if ([keyPath isEqualToString:@"sharedSession.userPlaylists.loaded"]) {
-        [self NSLogAllPlaylists];
+/* 
+ * FIXME: Figure out why the loaded property from the userplaylists does not really work correctly
+ * Right now, it will turn to 1 (loaded) before the playlists are totally loaded.
+ */
+- (void)observeValueForKeyPath:(NSString *)keyPath 
+                      ofObject:(id)object 
+                        change:(NSDictionary *)change 
+                       context:(void *)context {
+    if ([keyPath isEqualToString:@"sharedSession.userPlaylists.loaded"]) 
+    {
+        NSLog(@"The change: %@", change);
+        if ([[change valueForKey:NSKeyValueChangeNewKey] class] != [NSNull class])
+        {
+            BOOL newBoolValue = [[change valueForKey:NSKeyValueChangeNewKey] boolValue];
+            NSLog(@"New bool value: %d", newBoolValue);
+            if (newBoolValue) [self NSLogAllPlaylists];
+        }
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }

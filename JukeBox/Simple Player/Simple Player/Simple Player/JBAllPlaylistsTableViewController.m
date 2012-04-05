@@ -78,7 +78,16 @@
     SPPlaylist *playlistAtLocation = [[playlistContainer playlists] objectAtIndex:indexPath.row];
     
     // Configure the cell...
-    cell.textLabel.text = playlistAtLocation.name;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    if ([playlistAtLocation.name length] == 0)
+    {
+        cell.textLabel.text = @"Still loading...";
+    }
+    else 
+    {
+        cell.textLabel.text = playlistAtLocation.name;        
+    }
+    
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%d songs", [[playlistAtLocation valueForKey:@"items"] count]];
         
     return cell;
@@ -126,15 +135,14 @@
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+{    
+    JBAllSongsInPlaylistViewController *allSongsInPlaylistController = [[JBAllSongsInPlaylistViewController alloc] initWithStyle:UITableViewStylePlain];
+    SPPlaylist *selectedPlaylist = [[playlistContainer playlists] objectAtIndex:indexPath.row];
+    allSongsInPlaylistController.currentPlaylist = selectedPlaylist;
+    allSongsInPlaylistController.title = selectedPlaylist.name;
+    
+    [self.navigationController pushViewController:allSongsInPlaylistController animated:YES];
+    [allSongsInPlaylistController release];
 }
 
 @end

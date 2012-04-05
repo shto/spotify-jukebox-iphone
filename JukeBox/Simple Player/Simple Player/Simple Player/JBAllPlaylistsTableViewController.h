@@ -10,6 +10,7 @@
 #import "SPSession.h"
 #import "SPPlaylist.h"
 #import "SPPlaylistContainer.h"
+#import "JBAllSongsInPlaylistViewController.h"
 
 @interface JBAllPlaylistsTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 {
