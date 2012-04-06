@@ -11,6 +11,7 @@
 @implementation JBMainViewController
 
 @synthesize buttonJoin, buttonSearchAround;
+@synthesize textFieldJukeBoxID;
 
 - (id)init
 {
@@ -73,13 +74,24 @@
 
 - (IBAction)joinJukeBox:(id)sender
 {
-    // TODO: Add logic here to search for the juke box and make sure it exists
-    // For now, just continue to the next view
+    // Search for the juke box and make sure it exists
+    PFQuery *query = [PFQuery queryWithClassName:kClassNameJukeBox];
+    NSString *roomID = textFieldJukeBoxID.text;
+    PFObject *jukeBoxObject = [query getObjectWithId:roomID];
     
-    JBCurrentQueueController *currentQueueController = [[JBCurrentQueueController alloc] initWithStyle:UITableViewStyleGrouped];
-    currentQueueController.title = @"Current Queue";
-    [self.navigationController pushViewController:currentQueueController animated:YES];
-    [currentQueueController release];
+    // if we didn't find any room with that ID, return
+    // TODO: Add an alert view - inform the user that he has fat fingers and probably typed the address all wrong
+    if (!jukeBoxObject) return;
+    
+    NSString *jukeBoxRoomName = [jukeBoxObject objectForKey:kAttributeJukeBoxName];
+    
+    JBJukeBoxRoomViewController *jukeBoxRoomController = [[JBJukeBoxRoomViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    jukeBoxRoomController.title = jukeBoxRoomName;
+    jukeBoxRoomController.jukeboxID = roomID;
+    jukeBoxRoomController.jukeboxObject = jukeBoxObject;
+    
+    [self.navigationController pushViewController:jukeBoxRoomController animated:YES];
+    [jukeBoxRoomController release];
 }
 
 - (IBAction)showMyPlaylists:(id)sender

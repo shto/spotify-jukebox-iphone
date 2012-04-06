@@ -1,34 +1,71 @@
 //
-//  JBCurrentQueueController.m
+//  JBJukeBoxRoomViewController.m
 //  JukeBox
 //
-//  Created by Andrei on 3/29/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by Andrei on 4/6/12.
+//  Copyright (c) 2012 Spotify. All rights reserved.
 //
 
-#import "JBCurrentQueueController.h"
+#import "JBJukeBoxRoomViewController.h"
 
+@interface JBJukeBoxRoomViewController ()
+- (void)bringUpAllPlaylistViewController:(id)sender;
+- (void)cancelQueuingASong:(id)sender;
+@end
 
-@implementation JBCurrentQueueController
+@implementation JBJukeBoxRoomViewController
+
+@synthesize jukeboxID;
+@synthesize jukeboxObject;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        UIBarButtonItem *addSongToQueueButton = [[UIBarButtonItem alloc] 
+                                                 initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                 target:self
+                                                 action:@selector(bringUpAllPlaylistViewController:)];
+        self.navigationItem.rightBarButtonItem = addSongToQueueButton;
+        [addSongToQueueButton release];
     }
+    
     return self;
 }
 
-- (void)didReceiveMemoryWarning
+- (void)dealloc
 {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
+    [jukeboxID release];
+    [jukeboxObject release];
+    [super dealloc];
 }
 
-#pragma mark - View lifecycle
+// Brings up the user's playlists, so that the user can start choosing the song to add to the queue
+- (void)bringUpAllPlaylistViewController:(id)sender
+{    
+    JBAllPlaylistsTableViewController *allPlaylistsController = [[JBAllPlaylistsTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    allPlaylistsController.jukeboxObject = self.jukeboxObject;
+    
+    UINavigationController *allPlaylistsNavController = [[UINavigationController alloc] initWithRootViewController:allPlaylistsController];
+    
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(cancelQueuingASong:)];
+    allPlaylistsController.navigationItem.leftBarButtonItem = cancelButton;
+    
+    [self presentModalViewController:allPlaylistsNavController animated:YES];
+    
+    [cancelButton release];
+    [allPlaylistsController release];
+    [allPlaylistsNavController release];
+}
+
+- (void)cancelQueuingASong:(id)sender
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
 
 - (void)viewDidLoad
 {
@@ -48,29 +85,8 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-}
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
@@ -78,6 +94,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    // Return the number of sections.
     return 2;
 }
 
@@ -85,54 +102,33 @@
 {
     switch (section) {
         case 0:
-            return 1;
             break;
         case 1:
-            return 3;
+            break;
+        default:
             break;
     }
     
+    // Return the number of rows in the section.
     return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
-        
+    
     // Configure the cell...
     switch (indexPath.section) {
         case 0:
-            cell.textLabel.text = @"Current song";
             break;
         case 1:
-            cell.textLabel.text = [NSString stringWithFormat:@"Queued Song %d", (indexPath.row + 1)];
             break;
         default:
             break;
     }
     
     return cell;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    switch (section) {
-        case 0:
-            return @"Now Playing";
-            break;
-        case 1:
-            return @"Queued Songs";
-            break;
-        default:
-            break;
-    }
-    
-    return @"";
 }
 
 /*

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 #import "SPPlaylist.h"
 #import "SPPlaylistItem.h"
 #import "SPTrack.h"
@@ -15,8 +16,10 @@
 @interface JBAllSongsInPlaylistViewController : UITableViewController <UIActionSheetDelegate>
 {
     SPPlaylist *currentPlaylist;
+    PFObject *jukeboxObject;
 }
 
 @property (nonatomic, retain) SPPlaylist *currentPlaylist;
+@property (nonatomic, retain) PFObject *jukeboxObject;
 
 @end

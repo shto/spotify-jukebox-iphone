@@ -33,7 +33,6 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import "CocoaLibSpotify.h"
-#import "JBCurrentQueueController.h"
 #import "JBMainViewController.h"
 #include "appkey.c"
 

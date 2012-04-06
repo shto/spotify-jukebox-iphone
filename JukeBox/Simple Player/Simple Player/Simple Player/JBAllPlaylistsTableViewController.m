@@ -13,6 +13,7 @@
 @end
 
 @implementation JBAllPlaylistsTableViewController
+@synthesize jukeboxObject;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -27,6 +28,7 @@
 - (void)dealloc
 {
     [playlistContainer release];
+    [jukeboxObject release];
     [super dealloc];
 }
 

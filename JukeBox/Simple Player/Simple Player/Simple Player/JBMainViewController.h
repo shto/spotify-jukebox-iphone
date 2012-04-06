@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JBCurrentQueueController.h"
+#import <Parse/Parse.h>
+#import "JBParseClassNames.h"
 #import "JBAllPlaylistsTableViewController.h"
+#import "JBJukeBoxRoomViewController.h"
 #if TARGET_OS_IPHONE
 #import <AVFoundation/AVFoundation.h>
 #import <CoreAudio/CoreAudioTypes.h>
@@ -22,10 +24,12 @@
 {
     UIButton *buttonJoin;
     UIButton *buttonSearchAround;
+    UITextField *textFieldJukeBoxID;
 }
 
 @property (nonatomic, assign) IBOutlet UIButton *buttonJoin;
 @property (nonatomic, assign) IBOutlet UIButton *buttonSearchAround;
+@property (nonatomic, assign) IBOutlet UITextField *textFieldJukeBoxID;
 
 - (IBAction)joinJukeBox:(id)sender;
 - (IBAction)showMyPlaylists:(id)sender;

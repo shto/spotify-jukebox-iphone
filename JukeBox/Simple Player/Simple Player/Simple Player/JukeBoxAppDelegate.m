@@ -186,27 +186,6 @@
 	[[alert autorelease] show];
 }
 
-#pragma mark - IBActions
-
-- (IBAction)joinJukeBox:(id)sender
-{
-    // TODO: Add logic here to search for the juke box and make sure it exists
-    // For now, just continue to the next view
-    
-    JBCurrentQueueController *currentQueueController = [[JBCurrentQueueController alloc] initWithStyle:UITableViewStyleGrouped];
-    currentQueueController.title = @"Current Queue";
-    [self.navigationController pushViewController:currentQueueController animated:YES];
-    [currentQueueController release];
-}
-
-- (IBAction)showMyPlaylists:(id)sender
-{
-    UITableViewController *allPlaylists = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
-    [self.navigationController pushViewController:allPlaylists animated:YES];
-    
-}
-
-
 - (void)dealloc {
 	
 	[self removeObserver:self forKeyPath:@"currentTrack.name"];

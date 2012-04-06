@@ -30,12 +30,12 @@
 		75110055152B7ACF004290C4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75110054152B7ACF004290C4 /* Security.framework */; };
 		75110057152B7AD7004290C4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75110056152B7AD7004290C4 /* QuartzCore.framework */; };
 		7567998A1528B0F900EEA7D7 /* JBAllPlaylistsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 756799851528B0F900EEA7D7 /* JBAllPlaylistsTableViewController.m */; };
-		7567998B1528B0F900EEA7D7 /* JBCurrentQueueController.m in Sources */ = {isa = PBXBuildFile; fileRef = 756799871528B0F900EEA7D7 /* JBCurrentQueueController.m */; };
 		7567998C1528B0F900EEA7D7 /* JBMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 756799891528B0F900EEA7D7 /* JBMainViewController.m */; };
 		7567998F1528B12B00EEA7D7 /* JBMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7567998E1528B12B00EEA7D7 /* JBMainView.xib */; };
 		759E6E2C152E0AF300DEC515 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 759E6E2B152E0AF300DEC515 /* Parse.framework */; };
 		759E6E2E152E0B8B00DEC515 /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 759E6E2D152E0B8B00DEC515 /* GHUnitIOS.framework */; };
 		759E6E31152E102400DEC515 /* JBAllSongsInPlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 759E6E30152E102400DEC515 /* JBAllSongsInPlaylistViewController.m */; };
+		75C17CC9152F344C007C59C0 /* JBJukeBoxRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C17CC8152F344C007C59C0 /* JBJukeBoxRoomViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,8 +86,6 @@
 		75110058152B7B3C004290C4 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		756799841528B0F900EEA7D7 /* JBAllPlaylistsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBAllPlaylistsTableViewController.h; sourceTree = "<group>"; };
 		756799851528B0F900EEA7D7 /* JBAllPlaylistsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBAllPlaylistsTableViewController.m; sourceTree = "<group>"; };
-		756799861528B0F900EEA7D7 /* JBCurrentQueueController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBCurrentQueueController.h; sourceTree = "<group>"; };
-		756799871528B0F900EEA7D7 /* JBCurrentQueueController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBCurrentQueueController.m; sourceTree = "<group>"; };
 		756799881528B0F900EEA7D7 /* JBMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMainViewController.h; sourceTree = "<group>"; };
 		756799891528B0F900EEA7D7 /* JBMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBMainViewController.m; sourceTree = "<group>"; };
 		7567998E1528B12B00EEA7D7 /* JBMainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JBMainView.xib; sourceTree = "<group>"; };
@@ -96,6 +94,9 @@
 		759E6E2D152E0B8B00DEC515 /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GHUnitIOS.framework; sourceTree = "<group>"; };
 		759E6E2F152E102400DEC515 /* JBAllSongsInPlaylistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBAllSongsInPlaylistViewController.h; sourceTree = "<group>"; };
 		759E6E30152E102400DEC515 /* JBAllSongsInPlaylistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBAllSongsInPlaylistViewController.m; sourceTree = "<group>"; };
+		75C17CC7152F344C007C59C0 /* JBJukeBoxRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBJukeBoxRoomViewController.h; sourceTree = "<group>"; };
+		75C17CC8152F344C007C59C0 /* JBJukeBoxRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBJukeBoxRoomViewController.m; sourceTree = "<group>"; };
+		75C17CCB152F379F007C59C0 /* JBParseClassNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JBParseClassNames.h; path = "Simple Player/JBParseClassNames.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				500EC8C21439D54E00E8A60C /* CocoaLibSpotify iOS Library.xcodeproj */,
+				75C17CCA152F3752007C59C0 /* Helpers */,
 				50AF49B21439CB6D00E4A5EF /* JukeBox */,
 				50AF49AB1439CB6D00E4A5EF /* Frameworks */,
 				50AF49A91439CB6D00E4A5EF /* Products */,
@@ -218,12 +220,12 @@
 			children = (
 				756799841528B0F900EEA7D7 /* JBAllPlaylistsTableViewController.h */,
 				756799851528B0F900EEA7D7 /* JBAllPlaylistsTableViewController.m */,
-				756799861528B0F900EEA7D7 /* JBCurrentQueueController.h */,
-				756799871528B0F900EEA7D7 /* JBCurrentQueueController.m */,
 				756799881528B0F900EEA7D7 /* JBMainViewController.h */,
 				756799891528B0F900EEA7D7 /* JBMainViewController.m */,
 				759E6E2F152E102400DEC515 /* JBAllSongsInPlaylistViewController.h */,
 				759E6E30152E102400DEC515 /* JBAllSongsInPlaylistViewController.m */,
+				75C17CC7152F344C007C59C0 /* JBJukeBoxRoomViewController.h */,
+				75C17CC8152F344C007C59C0 /* JBJukeBoxRoomViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -234,6 +236,14 @@
 				7567998E1528B12B00EEA7D7 /* JBMainView.xib */,
 			);
 			name = Nibs;
+			sourceTree = "<group>";
+		};
+		75C17CCA152F3752007C59C0 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				75C17CCB152F379F007C59C0 /* JBParseClassNames.h */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -323,9 +333,9 @@
 				50AF49BD1439CB6D00E4A5EF /* JukeBoxAppDelegate.m in Sources */,
 				5002BD7A1439E49700FEAB3C /* SPLoginViewController.m in Sources */,
 				7567998A1528B0F900EEA7D7 /* JBAllPlaylistsTableViewController.m in Sources */,
-				7567998B1528B0F900EEA7D7 /* JBCurrentQueueController.m in Sources */,
 				7567998C1528B0F900EEA7D7 /* JBMainViewController.m in Sources */,
 				759E6E31152E102400DEC515 /* JBAllSongsInPlaylistViewController.m in Sources */,
+				75C17CC9152F344C007C59C0 /* JBJukeBoxRoomViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

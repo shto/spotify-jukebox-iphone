@@ -15,6 +15,7 @@
 @implementation JBAllSongsInPlaylistViewController
 
 @synthesize currentPlaylist;
+@synthesize jukeboxObject;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -23,6 +24,13 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void)dealloc
+{
+    [currentPlaylist release];
+    [jukeboxObject release];
+    [super dealloc];
 }
 
 - (void)viewDidLoad
@@ -165,6 +173,7 @@
     switch (buttonIndex) {
         case 0:
             NSLog(@"Yes, add it!");
+            PFObject *currentJukeBox
             break;
         case 1:
             NSLog(@"No, don't add it!");
