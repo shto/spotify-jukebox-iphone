@@ -11,6 +11,7 @@
 @interface JBJukeBoxRoomViewController ()
 - (void)bringUpAllPlaylistViewController:(id)sender;
 - (void)cancelQueuingASong:(id)sender;
+- (void)refreshParseInformation;
 @end
 
 @implementation JBJukeBoxRoomViewController
@@ -22,13 +23,28 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+        // set the right bar button to "Add new song to queue"
         UIBarButtonItem *addSongToQueueButton = [[UIBarButtonItem alloc] 
                                                  initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                  target:self
                                                  action:@selector(bringUpAllPlaylistViewController:)];
         self.navigationItem.rightBarButtonItem = addSongToQueueButton;
         [addSongToQueueButton release];
+        
+        // timer for refreshing the parse information
+        refreshParseInformationTimer = [NSTimer timerWithTimeInterval:20
+                                                               target:self
+                                                             selector:@selector(refreshParseInformation)
+                                                             userInfo:nil
+                                                              repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:refreshParseInformationTimer forMode:NSDefaultRunLoopMode];
+        
+        // add observer for parse object information
+        NSString *keyPathToQueue = [@"jukeboxObject." stringByAppendingString:kAttributeJukeBoxQueue];
+        [self addObserver:self
+               forKeyPath:keyPathToQueue
+                  options:NSKeyValueObservingOptionNew
+                  context:nil];
     }
     
     return self;
@@ -36,9 +52,21 @@
 
 - (void)dealloc
 {
+    [self removeObserver:self forKeyPath:@"jukeboxObject.queue"];
+    
     [jukeboxID release];
     [jukeboxObject release];
     [super dealloc];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    NSLog(@"A keypath has changed: %@", keyPath);
+    if ([keyPath isEqualToString:[@"jukeboxObject." stringByAppendingString:kAttributeJukeBoxQueue]])
+    {
+        NSLog(@"Queue has changed!");
+        [self.tableView reloadData];
+    }
 }
 
 // Brings up the user's playlists, so that the user can start choosing the song to add to the queue
@@ -67,6 +95,12 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self refreshParseInformation];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -90,6 +124,16 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+// Refresh the information we get from Parse
+- (void)refreshParseInformation
+{
+    // get the currently playing track and the current queue    
+    currentQueue = [jukeboxObject objectForKey:kAttributeJukeBoxQueue];
+    currentlyPlayingSongId = [jukeboxObject objectForKey:kAttributeJukeBoxCurrentTrack];
+    
+    [self.tableView reloadData];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -102,8 +146,11 @@
 {
     switch (section) {
         case 0:
+            return 1;
             break;
         case 1:
+            if ([currentQueue lastObject]) return [currentQueue count];
+            else return 0;
             break;
         default:
             break;
@@ -117,18 +164,50 @@
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+    }
+
     // Configure the cell...
     switch (indexPath.section) {
         case 0:
+            if (currentlyPlayingSongId.length > 0)
+            {
+                SPTrack *currentlyPlayingTrack = [SPTrack trackForTrackURL:[NSURL URLWithString:currentlyPlayingSongId]
+                                                                 inSession:[SPSession sharedSession]];
+                cell.textLabel.text = currentlyPlayingTrack.name;
+                cell.detailTextLabel.text = [JBGeneralHelper artistsNamesCombinedStringFromSpotifyTrack:currentlyPlayingTrack];
+            }
             break;
         case 1:
+        {
+            SPTrack *trackAtLocation = [SPTrack trackForTrackURL:[NSURL URLWithString:[currentQueue objectAtIndex:indexPath.row]] 
+                                                       inSession:[SPSession sharedSession]];
+            cell.textLabel.text = trackAtLocation.name;
+            cell.detailTextLabel.text = [JBGeneralHelper artistsNamesCombinedStringFromSpotifyTrack:trackAtLocation];
             break;
+        }
         default:
             break;
     }
     
     return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    switch (section) {
+        case 0:
+            return @"Currently Playing Song";
+            break;
+        case 1:
+            return @"Queue";
+            break;
+        default:
+            break;
+    }
+    
+    return @"";
 }
 
 /*

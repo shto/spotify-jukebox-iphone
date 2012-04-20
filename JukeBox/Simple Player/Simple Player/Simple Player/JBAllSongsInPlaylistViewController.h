@@ -12,11 +12,15 @@
 #import "SPPlaylistItem.h"
 #import "SPTrack.h"
 #import "SPArtist.h"
+#import "JBParseClassNames.h"
+#import "JBGeneralHelper.h"
 
 @interface JBAllSongsInPlaylistViewController : UITableViewController <UIActionSheetDelegate>
 {
     SPPlaylist *currentPlaylist;
     PFObject *jukeboxObject;
+    
+    SPPlaylistItem *selectedPlaylistItem;
 }
 
 @property (nonatomic, retain) SPPlaylist *currentPlaylist;

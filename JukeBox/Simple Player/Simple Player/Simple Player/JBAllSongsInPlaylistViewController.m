@@ -84,25 +84,7 @@
     if ([playlistItemAtLocation.item class] == [SPTrack class])
     {
         SPTrack *trackAtLocation = (SPTrack *)playlistItemAtLocation.item;
-        NSArray *allArtistsOfTrack = trackAtLocation.artists;
-        
-        NSString *artistsNameCombined = @"";
-        if ([allArtistsOfTrack count] == 1)
-        {
-            artistsNameCombined = [[allArtistsOfTrack objectAtIndex:0] name];
-        }
-        else 
-        {
-            NSMutableArray *arrayOfArtistNames = [[NSMutableArray alloc] init];
-            for (SPArtist *artist in allArtistsOfTrack) {
-                [arrayOfArtistNames addObject:artist.name];
-            }
-            
-            artistsNameCombined = [arrayOfArtistNames componentsJoinedByString:@","];
-            [arrayOfArtistNames release];
-        }
-        
-        cell.detailTextLabel.text = artistsNameCombined;
+        cell.detailTextLabel.text = [JBGeneralHelper artistsNamesCombinedStringFromSpotifyTrack:trackAtLocation];
     }
     
     return cell;
@@ -153,6 +135,22 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    selectedPlaylistItem = [[currentPlaylist items] objectAtIndex:indexPath.row];
+    if ([selectedPlaylistItem.item class] != [SPTrack class])
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Can't add item"
+                                                        message:@"You can only add songs to the queue of the JukeBox. What you just selected doesn't look like a song"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK, I'll try again"
+                                              otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        
+        selectedPlaylistItem = nil;
+        
+        return;
+    }
+    
     NSString *selectedSongTitle = [[[[currentPlaylist items] objectAtIndex:indexPath.row] item] name];
     NSString *title = [NSString stringWithFormat:@"Are you sure you want to add %@ to this JukeBox?", selectedSongTitle];
     UIActionSheet *actionSheetAreYouSure = [[UIActionSheet alloc] initWithTitle:title
@@ -172,14 +170,46 @@
 {
     switch (buttonIndex) {
         case 0:
-            NSLog(@"Yes, add it!");
-            PFObject *currentJukeBox
+        {
+            SPTrack *selectedTrack = (SPTrack *)selectedPlaylistItem.item;
+            
+            // add the song to the current juke box's queue
+            NSString *currentSongURL = [NSString stringWithFormat:@"%@", selectedTrack.spotifyURL];
+            NSMutableArray *currentQueue = [jukeboxObject objectForKey:kAttributeJukeBoxQueue];
+            
+            if (!currentQueue)
+            {
+                currentQueue = [[NSMutableArray alloc] init];
+            }
+            
+            [currentQueue addObject:currentSongURL];
+            [jukeboxObject setObject:currentQueue forKey:kAttributeJukeBoxQueue];
+            
+            NSLog(@"all items in the current queue: %d", [currentQueue count]);
+            
+            [jukeboxObject saveInBackgroundWithTarget:self selector:@selector(jukeboxObjectSavedWithResult:error:)];
+            
+            NSLog(@"all items in the current queue: %d", [currentQueue count]);
+
             break;
+        }
         case 1:
-            NSLog(@"No, don't add it!");
+            // don't add anything
             break;
         default:
             break;
+    }
+}
+             
+- (void)jukeboxObjectSavedWithResult:(NSNumber *)result error:(NSError *)error
+{
+    if (!error)
+    {
+        NSLog(@"Successfully saved object.");
+        [self dismissModalViewControllerAnimated:YES];
+    }
+    else {
+        NSLog(@"The error: %@", [error description]);
     }
 }
 

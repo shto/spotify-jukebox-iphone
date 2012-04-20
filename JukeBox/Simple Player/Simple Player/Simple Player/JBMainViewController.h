@@ -25,11 +25,13 @@
     UIButton *buttonJoin;
     UIButton *buttonSearchAround;
     UITextField *textFieldJukeBoxID;
+    UIActivityIndicatorView *indicatorQueryingForJukeBox;
 }
 
 @property (nonatomic, assign) IBOutlet UIButton *buttonJoin;
 @property (nonatomic, assign) IBOutlet UIButton *buttonSearchAround;
 @property (nonatomic, assign) IBOutlet UITextField *textFieldJukeBoxID;
+@property (nonatomic, assign) IBOutlet UIActivityIndicatorView *indicatorQueryingForJukeBox;
 
 - (IBAction)joinJukeBox:(id)sender;
 - (IBAction)showMyPlaylists:(id)sender;

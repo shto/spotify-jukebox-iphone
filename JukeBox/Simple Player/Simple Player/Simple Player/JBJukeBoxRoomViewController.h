@@ -13,6 +13,11 @@
 {
     NSString *jukeboxID;
     PFObject *jukeboxObject;
+    
+    NSMutableArray *currentQueue;
+    NSString *currentlyPlayingSongId;
+    
+    NSTimer *refreshParseInformationTimer;
 }
 
 @property (nonatomic, retain) NSString *jukeboxID;

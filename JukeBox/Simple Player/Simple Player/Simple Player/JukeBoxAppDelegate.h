@@ -48,10 +48,6 @@
 @property (nonatomic, assign) IBOutlet UIButton *buttonJoin;
 @property (nonatomic, assign) IBOutlet UIButton *buttonSearchAround;
 
-- (IBAction)joinJukeBox:(id)sender;
-- (IBAction)showMyPlaylists:(id)sender;
-
-
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UIViewController *mainViewController;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;

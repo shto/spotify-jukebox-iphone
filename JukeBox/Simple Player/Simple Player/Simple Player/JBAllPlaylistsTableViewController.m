@@ -148,6 +148,7 @@
     SPPlaylist *selectedPlaylist = [[playlistContainer playlists] objectAtIndex:indexPath.row];
     allSongsInPlaylistController.currentPlaylist = selectedPlaylist;
     allSongsInPlaylistController.title = selectedPlaylist.name;
+    allSongsInPlaylistController.jukeboxObject = self.jukeboxObject;
     
     [self.navigationController pushViewController:allSongsInPlaylistController animated:YES];
     [allSongsInPlaylistController release];

@@ -12,5 +12,7 @@
 #define kClassNameJukeBox               @"JukeBox"
 #define kAttributeJukeBoxName           @"name"
 #define kAttributeJukeBoxQueue          @"queue"
+#define kAttributeJukeBoxCurrentTrack   @"currentTrack"
+#define kAttributeJukeBoxJukeBoxID      @"jukeBoxID"
 
 #endif

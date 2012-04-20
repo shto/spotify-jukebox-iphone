@@ -36,6 +36,7 @@
 		759E6E2E152E0B8B00DEC515 /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 759E6E2D152E0B8B00DEC515 /* GHUnitIOS.framework */; };
 		759E6E31152E102400DEC515 /* JBAllSongsInPlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 759E6E30152E102400DEC515 /* JBAllSongsInPlaylistViewController.m */; };
 		75C17CC9152F344C007C59C0 /* JBJukeBoxRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C17CC8152F344C007C59C0 /* JBJukeBoxRoomViewController.m */; };
+		75C2A50815334CED006539BA /* JBGeneralHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C2A50715334CED006539BA /* JBGeneralHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,8 @@
 		75C17CC7152F344C007C59C0 /* JBJukeBoxRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBJukeBoxRoomViewController.h; sourceTree = "<group>"; };
 		75C17CC8152F344C007C59C0 /* JBJukeBoxRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBJukeBoxRoomViewController.m; sourceTree = "<group>"; };
 		75C17CCB152F379F007C59C0 /* JBParseClassNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JBParseClassNames.h; path = "Simple Player/JBParseClassNames.h"; sourceTree = "<group>"; };
+		75C2A50615334CED006539BA /* JBGeneralHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JBGeneralHelper.h; path = "Simple Player/JBGeneralHelper.h"; sourceTree = "<group>"; };
+		75C2A50715334CED006539BA /* JBGeneralHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JBGeneralHelper.m; path = "Simple Player/JBGeneralHelper.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +245,8 @@
 			isa = PBXGroup;
 			children = (
 				75C17CCB152F379F007C59C0 /* JBParseClassNames.h */,
+				75C2A50615334CED006539BA /* JBGeneralHelper.h */,
+				75C2A50715334CED006539BA /* JBGeneralHelper.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -336,6 +341,7 @@
 				7567998C1528B0F900EEA7D7 /* JBMainViewController.m in Sources */,
 				759E6E31152E102400DEC515 /* JBAllSongsInPlaylistViewController.m in Sources */,
 				75C17CC9152F344C007C59C0 /* JBJukeBoxRoomViewController.m in Sources */,
+				75C2A50815334CED006539BA /* JBGeneralHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
