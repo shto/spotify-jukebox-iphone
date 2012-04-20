@@ -78,9 +78,7 @@
 #pragma mark - IBActions
 
 - (IBAction)joinJukeBox:(id)sender
-{
-    // TODO: Start an indicator here
-    
+{    
     // Search for the juke box and make sure it exists
     PFQuery *query = [PFQuery queryWithClassName:kClassNameJukeBox];
     NSString *roomID = textFieldJukeBoxID.text;
@@ -100,9 +98,12 @@
             
             if (!error) {
                 // The find succeeded.
-                NSLog(@"Successfully retrieved %d scores.", objects.count);
                 if (objects.count > 0) 
                 {
+                    PFObject *selectedRoom = [objects objectAtIndex:0];
+                    
+                    // TODO: Add this person to the members array here!
+                    
                     [self openUpJukeBoxRoom:[objects objectAtIndex:0]];
                 }
                 else {

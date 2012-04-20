@@ -34,12 +34,16 @@
 #import <Parse/Parse.h>
 #import "CocoaLibSpotify.h"
 #import "JBMainViewController.h"
+#import "KeyChainHelper+JukeBoxSpecific.h"
+#import "PPasswordGiver.h"
+#import "SPLoginViewController.h"
 #include "appkey.c"
 
 @interface JukeBoxAppDelegate : NSObject <UIApplicationDelegate, SPSessionDelegate> {
 	UIViewController *_mainViewController;
     UINavigationController *navigationController;
     SPSession *sharedSession;
+    SPLoginViewController *loginViewController;
     
     UIButton *buttonJoin;
     UIButton *buttonSearchAround;

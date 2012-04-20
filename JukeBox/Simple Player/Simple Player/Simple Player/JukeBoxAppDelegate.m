@@ -31,10 +31,10 @@
  */
 
 #import "JukeBoxAppDelegate.h"
-#import "SPLoginViewController.h"
 
 @interface JukeBoxAppDelegate (PrivateMethods)
 
+-(void)showLogin;
 - (void)NSLogAllPlaylists;
 
 @end
@@ -73,14 +73,31 @@
            forKeyPath:@"sharedSession.userPlaylists.loaded" 
               options:NSKeyValueObservingOptionNew 
               context:nil];
+        
+    KeyChainHelper *tempKeyChainHelper = [[KeyChainHelper alloc] init];
+//    [[NSUserDefaults standardUserDefaults] setObject:@"1110745591" forKey:kUserDefaultsUsernameKey];
+    NSString *username = [[NSUserDefaults standardUserDefaults] stringForKey:kUserDefaultsUsernameKey];
+    NSString *password = [tempKeyChainHelper passwordFromKeyChain];
+    
+    [self showLogin];
 	
-	[self performSelector:@selector(showLogin) withObject:nil afterDelay:0.0];
+    if ([JBGeneralHelper stringIsEmptyOrNil:username] || [JBGeneralHelper stringIsEmptyOrNil:password])
+    {
+    }
+    else {
+        // perform login if credentials are available
+        [loginViewController performLoginWithUsername:username andPassword:password];
+    }
+    
+    [tempKeyChainHelper release];
+    username = @"";
+    password = @"";
 	
     return YES;
 }
 
 -(void)showLogin {
-    SPLoginViewController *loginViewController = [[[SPLoginViewController alloc] init] autorelease];
+    loginViewController = [[SPLoginViewController alloc] init];
 	[self.window.rootViewController presentModalViewController:loginViewController
 											   animated:NO];
 }
@@ -157,9 +174,28 @@
 #pragma mark SPSessionDelegate Methods
 
 -(void)sessionDidLoginSuccessfully:(SPSession *)aSession; {
-	
-	// Invoked by SPSession after a successful login.
+    // save username and password
+    
+    // when saving the username, save just the ID (not the spotify:user: as well)
+    NSString *stringToRemove = @"spotify:user:";
+    NSString *userURL = [NSString stringWithFormat:@"%@", [[aSession user] spotifyURL]];
+    NSRange rangeOfStringToRemove = [userURL rangeOfString:stringToRemove];
+    NSString *userID = [userURL substringFromIndex:rangeOfStringToRemove.length] ;
+	[[NSUserDefaults standardUserDefaults] setObject:userID forKey:kUserDefaultsUsernameKey];
+    
+    if ([self.window.rootViewController.modalViewController 
+         respondsToSelector:@selector(getPassword)])
+    {
+        NSString *thePassword = [self.window.rootViewController.modalViewController getPassword];
+        KeyChainHelper *keyChainHelper = [[KeyChainHelper alloc] init];
+        [keyChainHelper writePasswordToKeyChain:thePassword];
+        [keyChainHelper release];
+    }
+    
+	// Invoked by SPSession after a successful login
 	[self.window.rootViewController dismissModalViewControllerAnimated:YES];
+    
+    [loginViewController release];
 }
 
 -(void)session:(SPSession *)aSession didFailToLoginWithError:(NSError *)error; {

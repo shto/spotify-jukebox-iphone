@@ -31,8 +31,9 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "PPasswordGiver.h"
 
-@interface SPLoginViewController : UIViewController {
+@interface SPLoginViewController : UIViewController <PPasswordGiver> {
 	UITextField *usernameField;
 	UITextField *passwordField;
 	UIButton *loginButton;
@@ -45,5 +46,8 @@
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
 
 - (IBAction)performLogin:(id)sender;
+- (void)performLoginWithUsername:(NSString *)username andPassword:(NSString *)password;
+
+- (NSString *)getPassword;
 
 @end

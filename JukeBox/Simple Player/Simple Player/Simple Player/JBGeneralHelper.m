@@ -33,4 +33,16 @@
     return artistsNameCombined;
 }
 
+/**
+ Checks whether a given NSString object is empty or nil.
+ @param 
+ theString The given string that will be checked against.
+ @returns 
+ BOOL Returns YES if the string is empty or nil, NO otherwise
+ */
++ (BOOL)stringIsEmptyOrNil:(NSString *)theString
+{
+    return (theString == (id)[NSNull null] || theString.length == 0);
+}
+
 @end

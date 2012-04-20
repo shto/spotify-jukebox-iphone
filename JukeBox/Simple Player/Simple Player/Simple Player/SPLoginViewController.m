@@ -79,7 +79,21 @@
 	self.passwordField.enabled = NO;
 	self.loginButton.enabled = NO;
 	self.spinner.hidden = NO;
-	
+}
+
+- (void)performLoginWithUsername:(NSString *)username andPassword:(NSString *)password
+{
+    self.usernameField.text = username;
+    self.passwordField.text = password;
+    
+    [[SPSession sharedSession] attemptLoginWithUserName:username
+											   password:password
+									rememberCredentials:NO];
+    
+    self.usernameField.enabled = NO;
+	self.passwordField.enabled = NO;
+	self.loginButton.enabled = NO;
+	self.spinner.hidden = NO;
 }
 
 -(void)session:(SPSession *)aSession didFailToLoginWithError:(NSError *)error; {
@@ -138,6 +152,13 @@
 	[loginButton release];
 	[spinner release];
 	[super dealloc];
+}
+
+
+// Returns the Spotify Password
+- (NSString *)getPassword
+{
+    return [passwordField text];
 }
 
 @end

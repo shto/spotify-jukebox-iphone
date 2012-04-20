@@ -13,5 +13,6 @@
 @interface JBGeneralHelper : NSObject
 
 + (NSString *)artistsNamesCombinedStringFromSpotifyTrack:(SPTrack *)theTrack;
++ (BOOL)stringIsEmptyOrNil:(NSString *)theString;
 
 @end

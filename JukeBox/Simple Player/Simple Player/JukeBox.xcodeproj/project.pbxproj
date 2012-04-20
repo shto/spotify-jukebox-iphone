@@ -37,6 +37,8 @@
 		759E6E31152E102400DEC515 /* JBAllSongsInPlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 759E6E30152E102400DEC515 /* JBAllSongsInPlaylistViewController.m */; };
 		75C17CC9152F344C007C59C0 /* JBJukeBoxRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C17CC8152F344C007C59C0 /* JBJukeBoxRoomViewController.m */; };
 		75C2A50815334CED006539BA /* JBGeneralHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C2A50715334CED006539BA /* JBGeneralHelper.m */; };
+		75FC3D9015418AF500E81CF9 /* KeyChainHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FC3D8F15418AF500E81CF9 /* KeyChainHelper.m */; };
+		75FC3D9315418BC300E81CF9 /* KeyChainHelper+JukeBoxSpecific.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FC3D9215418BC300E81CF9 /* KeyChainHelper+JukeBoxSpecific.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +102,11 @@
 		75C17CCB152F379F007C59C0 /* JBParseClassNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JBParseClassNames.h; path = "Simple Player/JBParseClassNames.h"; sourceTree = "<group>"; };
 		75C2A50615334CED006539BA /* JBGeneralHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JBGeneralHelper.h; path = "Simple Player/JBGeneralHelper.h"; sourceTree = "<group>"; };
 		75C2A50715334CED006539BA /* JBGeneralHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JBGeneralHelper.m; path = "Simple Player/JBGeneralHelper.m"; sourceTree = "<group>"; };
+		75FC3D8E15418AF500E81CF9 /* KeyChainHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyChainHelper.h; sourceTree = "<group>"; };
+		75FC3D8F15418AF500E81CF9 /* KeyChainHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyChainHelper.m; sourceTree = "<group>"; };
+		75FC3D9115418BC300E81CF9 /* KeyChainHelper+JukeBoxSpecific.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KeyChainHelper+JukeBoxSpecific.h"; sourceTree = "<group>"; };
+		75FC3D9215418BC300E81CF9 /* KeyChainHelper+JukeBoxSpecific.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KeyChainHelper+JukeBoxSpecific.m"; sourceTree = "<group>"; };
+		75FC3D9515418E2C00E81CF9 /* PPasswordGiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPasswordGiver.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,11 +251,24 @@
 		75C17CCA152F3752007C59C0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				75FC3D9415418E1500E81CF9 /* Protocols */,
+				75FC3D8E15418AF500E81CF9 /* KeyChainHelper.h */,
+				75FC3D8F15418AF500E81CF9 /* KeyChainHelper.m */,
 				75C17CCB152F379F007C59C0 /* JBParseClassNames.h */,
 				75C2A50615334CED006539BA /* JBGeneralHelper.h */,
 				75C2A50715334CED006539BA /* JBGeneralHelper.m */,
+				75FC3D9115418BC300E81CF9 /* KeyChainHelper+JukeBoxSpecific.h */,
+				75FC3D9215418BC300E81CF9 /* KeyChainHelper+JukeBoxSpecific.m */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		75FC3D9415418E1500E81CF9 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				75FC3D9515418E2C00E81CF9 /* PPasswordGiver.h */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,6 +362,8 @@
 				759E6E31152E102400DEC515 /* JBAllSongsInPlaylistViewController.m in Sources */,
 				75C17CC9152F344C007C59C0 /* JBJukeBoxRoomViewController.m in Sources */,
 				75C2A50815334CED006539BA /* JBGeneralHelper.m in Sources */,
+				75FC3D9015418AF500E81CF9 /* KeyChainHelper.m in Sources */,
+				75FC3D9315418BC300E81CF9 /* KeyChainHelper+JukeBoxSpecific.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

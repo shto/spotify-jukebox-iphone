@@ -14,5 +14,8 @@
 #define kAttributeJukeBoxQueue          @"queue"
 #define kAttributeJukeBoxCurrentTrack   @"currentTrack"
 #define kAttributeJukeBoxJukeBoxID      @"jukeBoxID"
+#define kAttributeJukeBoxMembersArray   @"membersArray"
+
+#define kUserDefaultsUsernameKey        @"username"
 
 #endif
