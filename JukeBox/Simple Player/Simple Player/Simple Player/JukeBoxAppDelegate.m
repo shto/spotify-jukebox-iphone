@@ -55,9 +55,8 @@
     [Parse setApplicationId:@"L6g7AozXjr5TQ06YtuTXjSs15NZwfYiRnDnaeAn9" 
                   clientKey:@"huqTuw04XCuGe3rxVlkhvkD2PH805UemWkUVoYNM"];
     
-    [TestFlight takeOff:@"174465ff5413478e4defb14e0e7f6004_MTE1MjQwMjAxMS0wNy0yMiAwMzowMDo0NS4zNzE0NjE"];
+    [TestFlight takeOff:@"0e6928011aba67e1ea6cc4bfb15f0183_ODQ3NTAyMDEyLTA0LTI2IDExOjEwOjQ2LjUzNjQ1OA"];
     #ifdef TESTING
-        
         [TestFlight setDeviceIdentifier:[JBGeneralHelper getPhoneUniqueIdentifier]];
     #endif
     

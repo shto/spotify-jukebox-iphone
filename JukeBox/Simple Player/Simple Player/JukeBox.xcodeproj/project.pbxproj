@@ -452,6 +452,7 @@
 				PROVISIONING_PROFILE = "A4CA3CC0-7942-4EA8-B680-96680862A169";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "/Users/andrei/iPhone\\ Apps/JukeBox/JukeBox/libspotify-11.1.60-iOS-universal/libspotify.framework/Versions/11.1.60/Headers/ /Users/andrei/iPhone\\ Apps/JukeBox/common/ /Users/andrei/iPhone\\ Apps/JukeBox/JukeBox/libspotify-11.1.56-iOS-universal/libspotify.framework/Versions/11.1.56/Headers/";
 			};
 			name = Debug;
 		};
@@ -474,6 +475,7 @@
 				PROVISIONING_PROFILE = "00899D80-2935-4BA6-AB3D-D0C47F96588D";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "/Users/andrei/iPhone\\ Apps/JukeBox/JukeBox/libspotify-11.1.60-iOS-universal/libspotify.framework/Versions/11.1.60/Headers/ /Users/andrei/iPhone\\ Apps/JukeBox/common/ /Users/andrei/iPhone\\ Apps/JukeBox/JukeBox/libspotify-11.1.56-iOS-universal/libspotify.framework/Versions/11.1.56/Headers/";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
