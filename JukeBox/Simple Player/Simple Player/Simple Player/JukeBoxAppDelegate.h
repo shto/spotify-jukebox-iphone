@@ -32,6 +32,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "TestFlight.h"
 #import "CocoaLibSpotify.h"
 #import "JBMainViewController.h"
 #import "KeyChainHelper+JukeBoxSpecific.h"

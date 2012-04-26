@@ -69,7 +69,7 @@
 		return;
 	}
 
-	[[NSUserDefaults standardUserDefaults] setValue:usernameField.text forKey:@"username"];
+	[[NSUserDefaults standardUserDefaults] setValue:usernameField.text forKey:kUserDefaultsUsernameKey];
 	
 	[[SPSession sharedSession] attemptLoginWithUserName:self.usernameField.text
 											   password:self.passwordField.text

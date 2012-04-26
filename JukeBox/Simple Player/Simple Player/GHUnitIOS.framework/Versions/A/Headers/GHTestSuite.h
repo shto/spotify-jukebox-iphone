@@ -62,7 +62,7 @@ extern NSString *GHUnitTest;
  Create test suite with test cases.
  @param name Label to give the suite
  @param testCases Array of init'ed test case classes
- @param delegate Delegate
+ @param delegate
  */
 - (id)initWithName:(NSString *)name testCases:(NSArray *)testCases delegate:(id<GHTestDelegate>)delegate;
 
@@ -95,8 +95,8 @@ extern NSString *GHUnitTest;
 
 /*!
  Suite for a single test/method.
- @param testCaseClass Test case class
- @param method Method
+ @param testCaseClass
+ @param method
  @result Suite
  */
 + (GHTestSuite *)suiteWithTestCaseClass:(Class)testCaseClass method:(SEL)method;

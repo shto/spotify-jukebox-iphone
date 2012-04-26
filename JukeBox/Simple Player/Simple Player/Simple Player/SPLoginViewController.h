@@ -32,6 +32,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PPasswordGiver.h"
+#import "JBParseClassNames.h"
 
 @interface SPLoginViewController : UIViewController <PPasswordGiver> {
 	UITextField *usernameField;

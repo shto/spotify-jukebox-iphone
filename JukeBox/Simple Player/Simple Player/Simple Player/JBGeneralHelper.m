@@ -8,6 +8,8 @@
 
 #import "JBGeneralHelper.h"
 
+#define kUserDefaultsUniqueIdentifier   @"uniqueIdentifier"
+
 @implementation JBGeneralHelper
 
 + (NSString *)artistsNamesCombinedStringFromSpotifyTrack:(SPTrack *)theTrack
@@ -43,6 +45,37 @@
 + (BOOL)stringIsEmptyOrNil:(NSString *)theString
 {
     return (theString == (id)[NSNull null] || theString.length == 0);
+}
+
+/**
+ Makes and returns an unique identifier
+ */
++ (NSString *)GetUniqueIdentifier
+{
+    CFUUIDRef theUUID = CFUUIDCreate(NULL);
+    CFStringRef thestring = CFUUIDCreateString(NULL, theUUID);
+    CFRelease(theUUID);
+    return [(NSString *)thestring autorelease];
+}
+
+/**
+ Because we can no longer the phone's UUID, we have to create one ourselves
+ @returns 
+ NSString The phone's unique identifier
+ */
++ (NSString *)getPhoneUniqueIdentifier
+{
+    if ([self stringIsEmptyOrNil:[[NSUserDefaults standardUserDefaults] 
+                                  stringForKey:kUserDefaultsUniqueIdentifier]])
+    {
+        // if empty, create one
+        NSString *uniqueID = [self GetUniqueIdentifier];
+        [[NSUserDefaults standardUserDefaults] setObject:uniqueID
+                                                  forKey:kUserDefaultsUniqueIdentifier];
+        return uniqueID;
+    }
+    
+    return [[NSUserDefaults standardUserDefaults] stringForKey:kUserDefaultsUniqueIdentifier];
 }
 
 @end

@@ -33,10 +33,11 @@
 		7567998C1528B0F900EEA7D7 /* JBMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 756799891528B0F900EEA7D7 /* JBMainViewController.m */; };
 		7567998F1528B12B00EEA7D7 /* JBMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7567998E1528B12B00EEA7D7 /* JBMainView.xib */; };
 		759E6E2C152E0AF300DEC515 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 759E6E2B152E0AF300DEC515 /* Parse.framework */; };
-		759E6E2E152E0B8B00DEC515 /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 759E6E2D152E0B8B00DEC515 /* GHUnitIOS.framework */; };
+		759E6E2E152E0B8B00DEC515 /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 759E6E2D152E0B8B00DEC515 /* GHUnitIOS.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		759E6E31152E102400DEC515 /* JBAllSongsInPlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 759E6E30152E102400DEC515 /* JBAllSongsInPlaylistViewController.m */; };
 		75C17CC9152F344C007C59C0 /* JBJukeBoxRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C17CC8152F344C007C59C0 /* JBJukeBoxRoomViewController.m */; };
 		75C2A50815334CED006539BA /* JBGeneralHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C2A50715334CED006539BA /* JBGeneralHelper.m */; };
+		75D0EE6815497FF700407126 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75D0EE6715497FF700407126 /* libTestFlight.a */; };
 		75FC3D9015418AF500E81CF9 /* KeyChainHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FC3D8F15418AF500E81CF9 /* KeyChainHelper.m */; };
 		75FC3D9315418BC300E81CF9 /* KeyChainHelper+JukeBoxSpecific.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FC3D9215418BC300E81CF9 /* KeyChainHelper+JukeBoxSpecific.m */; };
 /* End PBXBuildFile section */
@@ -102,6 +103,8 @@
 		75C17CCB152F379F007C59C0 /* JBParseClassNames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JBParseClassNames.h; path = "Simple Player/JBParseClassNames.h"; sourceTree = "<group>"; };
 		75C2A50615334CED006539BA /* JBGeneralHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JBGeneralHelper.h; path = "Simple Player/JBGeneralHelper.h"; sourceTree = "<group>"; };
 		75C2A50715334CED006539BA /* JBGeneralHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JBGeneralHelper.m; path = "Simple Player/JBGeneralHelper.m"; sourceTree = "<group>"; };
+		75D0EE6715497FF700407126 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTestFlight.a; path = ../../../../../Downloads/TestFlightSDK1.0/libTestFlight.a; sourceTree = "<group>"; };
+		75D0EE691549800A00407126 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		75FC3D8E15418AF500E81CF9 /* KeyChainHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyChainHelper.h; sourceTree = "<group>"; };
 		75FC3D8F15418AF500E81CF9 /* KeyChainHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyChainHelper.m; sourceTree = "<group>"; };
 		75FC3D9115418BC300E81CF9 /* KeyChainHelper+JukeBoxSpecific.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KeyChainHelper+JukeBoxSpecific.h"; sourceTree = "<group>"; };
@@ -114,6 +117,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50A26BEA1439D79D00A0C876 /* libCocoaLibSpotify.a in Frameworks */,
+				75D0EE6815497FF700407126 /* libTestFlight.a in Frameworks */,
 				75110057152B7AD7004290C4 /* QuartzCore.framework in Frameworks */,
 				75110055152B7ACF004290C4 /* Security.framework in Frameworks */,
 				75110053152B7AC6004290C4 /* libz.1.1.3.dylib in Frameworks */,
@@ -124,7 +129,6 @@
 				5002BD7D1439E8E800FEAB3C /* SystemConfiguration.framework in Frameworks */,
 				5002BD6C1439DE2400FEAB3C /* AudioToolbox.framework in Frameworks */,
 				50A26BEC1439D7AA00A0C876 /* CoreAudio.framework in Frameworks */,
-				50A26BEA1439D79D00A0C876 /* libCocoaLibSpotify.a in Frameworks */,
 				50AF49AD1439CB6D00E4A5EF /* UIKit.framework in Frameworks */,
 				50AF49AF1439CB6D00E4A5EF /* Foundation.framework in Frameworks */,
 				50AF49B11439CB6D00E4A5EF /* CoreGraphics.framework in Frameworks */,
@@ -177,6 +181,7 @@
 		50AF49AB1439CB6D00E4A5EF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				75D0EE6715497FF700407126 /* libTestFlight.a */,
 				759E6E2B152E0AF300DEC515 /* Parse.framework */,
 				759E6E2D152E0B8B00DEC515 /* GHUnitIOS.framework */,
 				75110058152B7B3C004290C4 /* SenTestingKit.framework */,
@@ -252,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				75FC3D9415418E1500E81CF9 /* Protocols */,
+				75D0EE691549800A00407126 /* TestFlight.h */,
 				75FC3D8E15418AF500E81CF9 /* KeyChainHelper.h */,
 				75FC3D8F15418AF500E81CF9 /* KeyChainHelper.m */,
 				75C17CCB152F379F007C59C0 /* JBParseClassNames.h */,
@@ -425,6 +431,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Andrei Patru (27Z2757478)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -442,6 +449,7 @@
 				HEADER_SEARCH_PATHS = $CONFIGURATION_BUILD_DIR/include;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = "";
+				PROVISIONING_PROFILE = "A4CA3CC0-7942-4EA8-B680-96680862A169";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -451,6 +459,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Andrei Patru";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -462,6 +471,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "";
+				PROVISIONING_PROFILE = "00899D80-2935-4BA6-AB3D-D0C47F96588D";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -471,6 +481,7 @@
 		50AF49CF1439CB6E00E4A5EF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Andrei Patru (27Z2757478)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -479,11 +490,16 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Simple Player/JukeBox-Prefix.pch";
 				INFOPLIST_FILE = "Simple Player/JukeBox-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../../Downloads/TestFlightSDK1.0\"",
+				);
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
 				);
 				PRODUCT_NAME = JukeBox;
+				PROVISIONING_PROFILE = "A4CA3CC0-7942-4EA8-B680-96680862A169";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -491,6 +507,8 @@
 		50AF49D01439CB6E00E4A5EF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Andrei Patru";
+				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -499,11 +517,16 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Simple Player/JukeBox-Prefix.pch";
 				INFOPLIST_FILE = "Simple Player/JukeBox-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../../Downloads/TestFlightSDK1.0\"",
+				);
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
 				);
 				PRODUCT_NAME = JukeBox;
+				PROVISIONING_PROFILE = "00899D80-2935-4BA6-AB3D-D0C47F96588D";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

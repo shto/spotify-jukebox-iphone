@@ -29,9 +29,6 @@
 
 #import <UIKit/UIKit.h>
 
-/*!
- Application delegate for the iOS test application.
- */
 @interface GHUnitIOSAppDelegate : NSObject <UIApplicationDelegate> {
   UIWindow *window_;
   

@@ -30,9 +30,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-/*
- Main view for iOS test application.
- */
+
 @interface GHUnitIOSView : UIView {
   UISearchBar *searchBar_;
   

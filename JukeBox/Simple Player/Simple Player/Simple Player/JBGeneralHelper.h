@@ -14,5 +14,6 @@
 
 + (NSString *)artistsNamesCombinedStringFromSpotifyTrack:(SPTrack *)theTrack;
 + (BOOL)stringIsEmptyOrNil:(NSString *)theString;
++ (NSString *)getPhoneUniqueIdentifier;
 
 @end

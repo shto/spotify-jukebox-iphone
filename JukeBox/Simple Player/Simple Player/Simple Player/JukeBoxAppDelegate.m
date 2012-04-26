@@ -32,6 +32,8 @@
 
 #import "JukeBoxAppDelegate.h"
 
+#define TESTING 1
+
 @interface JukeBoxAppDelegate (PrivateMethods)
 
 -(void)showLogin;
@@ -52,6 +54,12 @@
 {
     [Parse setApplicationId:@"L6g7AozXjr5TQ06YtuTXjSs15NZwfYiRnDnaeAn9" 
                   clientKey:@"huqTuw04XCuGe3rxVlkhvkD2PH805UemWkUVoYNM"];
+    
+    [TestFlight takeOff:@"174465ff5413478e4defb14e0e7f6004_MTE1MjQwMjAxMS0wNy0yMiAwMzowMDo0NS4zNzE0NjE"];
+    #ifdef TESTING
+        
+        [TestFlight setDeviceIdentifier:[JBGeneralHelper getPhoneUniqueIdentifier]];
+    #endif
     
 	// Override point for customization after application launch.
 	[self.window makeKeyAndVisible];
@@ -173,16 +181,7 @@
 #pragma mark -
 #pragma mark SPSessionDelegate Methods
 
--(void)sessionDidLoginSuccessfully:(SPSession *)aSession; {
-    // save username and password
-    
-    // when saving the username, save just the ID (not the spotify:user: as well)
-    NSString *stringToRemove = @"spotify:user:";
-    NSString *userURL = [NSString stringWithFormat:@"%@", [[aSession user] spotifyURL]];
-    NSRange rangeOfStringToRemove = [userURL rangeOfString:stringToRemove];
-    NSString *userID = [userURL substringFromIndex:rangeOfStringToRemove.length] ;
-	[[NSUserDefaults standardUserDefaults] setObject:userID forKey:kUserDefaultsUsernameKey];
-    
+-(void)sessionDidLoginSuccessfully:(SPSession *)aSession; {    
     if ([self.window.rootViewController.modalViewController 
          respondsToSelector:@selector(getPassword)])
     {

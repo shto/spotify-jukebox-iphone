@@ -67,101 +67,52 @@ typedef enum {
 
 /*!
  Create view model with root test group node.
-
  @param identifier Unique identifier for test model (used to load defaults)
- @param suite Suite
+ @param suite
  */
 - (id)initWithIdentifier:(NSString *)identifier suite:(GHTestSuite *)suite;
 
-/*!
- @result Name of test suite.
- */
 - (NSString *)name;
-
-/*!
- Status description.
-
- @param prefix Prefix to append
- @result Current status string
- */
 - (NSString *)statusString:(NSString *)prefix;
 
 /*!
- Find the test node from the test.
-
- @param test Find test
+ Get the test node from the test.
+ @param test
  */
-- (GHTestNode *)findTestNodeForTest:(id<GHTest>)test;
+- (GHTestNode *)findTestNode:(id<GHTest>)test;
 
-/*!
- Find the first failure.
-
- @result The first failure
- */
 - (GHTestNode *)findFailure;
-
-/*!
- Find the next failure starting from node.
-
- @param node Node to start from
- */
 - (GHTestNode *)findFailureFromNode:(GHTestNode *)node;
 
 /*!
- Register node, so that we can do a lookup later. See findTestNodeForTest:.
-
- @param node Node to register
+ Register node, so that we can do a lookup later (see #findTestNode).
+ @param node
  */
 - (void)registerNode:(GHTestNode *)node;
 
-/*!
- @result Returns the number of test groups.
- */
+// Return number of test groups
 - (NSInteger)numberOfGroups;
 
-/*!
- Returns the number of tests in group.
- @param group Group number
- @result The number of tests in group.
- */
+// Return number of tests in group
 - (NSInteger)numberOfTestsInGroup:(NSInteger)group;
 
 /*!
  Search for path to test.
- @param test Test
+ @param test
  @result Index path
  */
 - (NSIndexPath *)indexPathToTest:(id<GHTest>)test;
 
-/*!
- Load defaults (user settings saved with saveDefaults).
- */
 - (void)loadDefaults;
-
-/*!
- Save defaults (user settings to be loaded with loadDefaults).
- */
 - (void)saveDefaults;
 
 /*!
  Run with current test suite.
-
- @param delegate Callback
- @param inParallel If YES, will run tests in operation queue
- @param options Options
  */
 - (void)run:(id<GHTestRunnerDelegate>)delegate inParallel:(BOOL)inParallel options:(GHTestOptions)options;
 
-/*!
- Cancel test run.
- */
 - (void)cancel;
 
-/*!
- Check if running.
-
- @result YES if running.
- */
 - (BOOL)isRunning;
 
 @end

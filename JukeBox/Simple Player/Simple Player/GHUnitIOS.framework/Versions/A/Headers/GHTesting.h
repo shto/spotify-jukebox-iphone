@@ -63,8 +63,7 @@ BOOL isTestFixtureOfClass(Class aClass, Class testCaseClass);
 
 /*! 
  Utility test for loading and running tests.
-
- Much of this is borrowed from GTM/UnitTesting.
+ @note Much of this is borrowed from GTM/UnitTesting.
  */
 @interface GHTesting : NSObject { 
 
@@ -85,20 +84,18 @@ BOOL isTestFixtureOfClass(Class aClass, Class testCaseClass);
 
 /*!
  Load tests from target.
- @param target Target
  @result Array of id<GHTest>
  */
 - (NSArray *)loadTestsFromTarget:(id)target;
 
 /*!
  See if class is of a registered test case class.
- @param aClass Class
  */
 - (BOOL)isTestCaseClass:(Class)aClass;
 
 /*!
  Register test case class.
- @param aClass Class
+ @param aClass
  */
 - (void)registerClass:(Class)aClass;
 
@@ -110,29 +107,29 @@ BOOL isTestFixtureOfClass(Class aClass, Class testCaseClass);
 
 /*!
  Format test exception.
- @param exception Exception
+ @param exception
  @result Description
  */
 + (NSString *)descriptionForException:(NSException *)exception;
 
 /*!
  Filename for cause of test exception.
- @param test Test
+ @param test
  @result Filename
  */
 + (NSString *)exceptionFilenameForTest:(id<GHTest>)test;
 
 /*!
  Line number for cause of test exception.
- @param test Test
+ @param test
  @result Line number
  */
 + (NSInteger)exceptionLineNumberForTest:(id<GHTest>)test;
 
 /*!
  Run test.
- @param target Target
- @param selector Selector
+ @param target
+ @param selector
  @param exception Exception, if set, is retained and should be released by the caller.
  @param interval Time to run the test
  @param reraiseExceptions If YES, will re-raise exceptions
@@ -142,10 +139,6 @@ BOOL isTestFixtureOfClass(Class aClass, Class testCaseClass);
 
 /*!
  Same as normal runTest without catching exceptions.
- @param target Target
- @param selector Selector
- @param exception Exception, if set, is retained and should be released by the caller.
- @param interval Time to run the test
  */
 + (BOOL)runTestOrRaiseWithTarget:(id)target selector:(SEL)selector exception:(NSException **)exception interval:(NSTimeInterval *)interval;
 

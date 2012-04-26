@@ -52,79 +52,24 @@
 
 @class GHTestRunner;
 
-/*!
- Notifies about the test run.
- Delegates can be guaranteed to be notified on the main thread.
- */
+// Delegates can be guaranteed to be notified on the main thread (using #delegateOnMainThread)
 @protocol GHTestRunnerDelegate <NSObject>
 @optional
-
-/*!
- Test run started.
- @param runner Runner
- */
 - (void)testRunnerDidStart:(GHTestRunner *)runner;
-
-/*!
- Test run did start test.
- @param runner Runner
- @param test Test
- */
-- (void)testRunner:(GHTestRunner *)runner didStartTest:(id<GHTest>)test;
-
-/*!
- Test run did update test.
- @param runner Runner
- @param test Test
- */
-- (void)testRunner:(GHTestRunner *)runner didUpdateTest:(id<GHTest>)test;
-
-/*!
- Test run did end test.
- @param runner Runner
- @param test Test
- */
-- (void)testRunner:(GHTestRunner *)runner didEndTest:(id<GHTest>)test;
-
-/*!
- Test run did cancel.
- @param runner Runner
- */
+- (void)testRunner:(GHTestRunner *)runner didStartTest:(id<GHTest>)test; // Test started
+- (void)testRunner:(GHTestRunner *)runner didUpdateTest:(id<GHTest>)test; // Test changed
+- (void)testRunner:(GHTestRunner *)runner didEndTest:(id<GHTest>)test; // Test finished
 - (void)testRunnerDidCancel:(GHTestRunner *)runner;
-
-/*!
- Test run did end.
- @param runner Runner
- */
 - (void)testRunnerDidEnd:(GHTestRunner *)runner;
 
-/*!
- Test run did log message.
- @param runner Runner
- @param didLog Message
- */
-- (void)testRunner:(GHTestRunner *)runner didLog:(NSString *)didLog;
-
-/*!
- Test run test did log message.
- @param runner Runner
- @param test Test
- @param didLog Message
- */
-- (void)testRunner:(GHTestRunner *)runner test:(id<GHTest>)test didLog:(NSString *)didLog;
-
+- (void)testRunner:(GHTestRunner *)runner didLog:(NSString *)message; // Runner logged message
+- (void)testRunner:(GHTestRunner *)runner test:(id<GHTest>)test didLog:(NSString *)message; // Test logged message
 @end
 
 /*!
  Runs the tests.
- Tests are run a separate thread though delegates are called on the main thread by default.
- 
- For example,
- 
-    GHTestRunner *runner = [[GHTestRunner alloc] initWithTest:suite];
-    runner.delegate = self;
-    [runner runTests];
- 
+ Tests are run a separate thread though delegates are called on the 
+ main thread by default (see #delegateOnMainThread).
  */
 @interface GHTestRunner : NSObject <GHTestDelegate> { 
   
@@ -150,32 +95,32 @@
 @property (readonly, getter=isCancelling) BOOL cancelling;
 @property (readonly) NSTimeInterval interval;
 @property (retain, nonatomic) NSOperationQueue *operationQueue;
-@property (assign, nonatomic, getter=isInParallel) BOOL inParallel;
+
 
 /*!
  Create runner for test.
- @param test Test
+ @param test
  */
 - (id)initWithTest:(id<GHTest>)test;
 
 /*!
  Create runner for all tests.
- @see [GHTesting loadAllTestCases].
+ @see GHTesting#loadAllTestCases.
  @result Runner
  */
 + (GHTestRunner *)runnerForAllTests;
 
 /*!
  Create runner for test suite.
- @param suite Suite
+ @param suite
  @result Runner
  */
 + (GHTestRunner *)runnerForSuite:(GHTestSuite *)suite;
 
 /*!
  Create runner for class and method.
- @param testClassName Test class name
- @param methodName Test method
+ @param testClassName
+ @param methodName
  @result Runner
  */
 + (GHTestRunner *)runnerForTestClassName:(NSString *)testClassName methodName:(NSString *)methodName;
@@ -193,25 +138,21 @@
  */
 + (int)run;
 
-/*!
- Run in the background.
- */
 - (void)runInBackground;
 
 /*!
- Start the test runner.
+ Start the test runner with the default test.
  @result 0 is success, otherwise the failure count
  */
 - (int)runTests;
 
-/*!
- Cancel test run.
- */
 - (void)cancel;
+
+- (void)setInParallel:(BOOL)inParallel;
+- (BOOL)isInParallel;
 
 /*!
  Write message to console.
- @param message Message to log
  */
 - (void)log:(NSString *)message;
 
