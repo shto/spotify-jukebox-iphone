@@ -52,10 +52,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [Parse setApplicationId:@"L6g7AozXjr5TQ06YtuTXjSs15NZwfYiRnDnaeAn9" 
-                  clientKey:@"huqTuw04XCuGe3rxVlkhvkD2PH805UemWkUVoYNM"];
+    // TODO: Initialize with own Parse app ID and key
+    [Parse setApplicationId:@"APP_ID" 
+                  clientKey:@"CLIENT_KEY"];
     
-    [TestFlight takeOff:@"0e6928011aba67e1ea6cc4bfb15f0183_ODQ3NTAyMDEyLTA0LTI2IDExOjEwOjQ2LjUzNjQ1OA"];
+    // TODO: Initialize with own TestFlight ID
+    [TestFlight takeOff:@"TESTFLIGHT_ID"];
     #ifdef TESTING
         [TestFlight setDeviceIdentifier:[JBGeneralHelper getPhoneUniqueIdentifier]];
     #endif
