@@ -103,7 +103,6 @@
                     PFObject *selectedRoom = [objects objectAtIndex:0];
                     
                     // TODO: Add this person to the members array here!
-                    
                     [self openUpJukeBoxRoom:[objects objectAtIndex:0]];
                 }
                 else {
@@ -146,6 +145,7 @@
     jukeBoxRoomController.jukeboxObject = jukeBoxObject;
     
     [self.navigationController pushViewController:jukeBoxRoomController animated:YES];
+    [self.navigationController setToolbarHidden:NO animated:NO];
     [jukeBoxRoomController release];
 }
 
@@ -153,6 +153,13 @@
 {
     JBAllPlaylistsTableViewController *allPlaylists = [[JBAllPlaylistsTableViewController alloc] initWithStyle:UITableViewStylePlain];
     [self.navigationController pushViewController:allPlaylists animated:YES];
+}
+
+- (IBAction)logOut:(id)sender
+{
+    [[SPSession sharedSession] logout];
+    SPLoginViewController *loginViewController = [[SPLoginViewController alloc] initWithNibName:@"SPLoginViewController_iPhone" bundle:nil];
+    [self presentModalViewController:loginViewController animated:YES];
 }
 
 @end

@@ -48,6 +48,7 @@
 
 - (IBAction)performLogin:(id)sender;
 - (void)performLoginWithUsername:(NSString *)username andPassword:(NSString *)password;
+- (void)loggingInHasFailed;
 
 - (NSString *)getPassword;
 

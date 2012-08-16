@@ -11,6 +11,7 @@
 #import "JBParseClassNames.h"
 #import "JBAllPlaylistsTableViewController.h"
 #import "JBJukeBoxRoomViewController.h"
+#import "SPLoginViewController.h"
 #if TARGET_OS_IPHONE
 #import <AVFoundation/AVFoundation.h>
 #import <CoreAudio/CoreAudioTypes.h>

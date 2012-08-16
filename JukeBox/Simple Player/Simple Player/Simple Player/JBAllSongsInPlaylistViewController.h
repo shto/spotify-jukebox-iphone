@@ -21,6 +21,8 @@
     PFObject *jukeboxObject;
     
     SPPlaylistItem *selectedPlaylistItem;
+    
+    UIAlertView *alertViewAddingSongToQueue;
 }
 
 @property (nonatomic, retain) SPPlaylist *currentPlaylist;

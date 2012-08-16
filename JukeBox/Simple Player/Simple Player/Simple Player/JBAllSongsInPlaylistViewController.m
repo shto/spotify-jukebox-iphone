@@ -189,6 +189,15 @@
             
             [jukeboxObject saveInBackgroundWithTarget:self selector:@selector(jukeboxObjectSavedWithResult:error:)];
             
+            alertViewAddingSongToQueue = [[UIAlertView alloc] initWithTitle:@"Adding Song To Queue"
+                                                                    message:@"..."
+                                                                   delegate:self
+                                                          cancelButtonTitle:nil
+                                                          otherButtonTitles:nil];
+            
+            [alertViewAddingSongToQueue show];
+            
+            
             NSLog(@"all items in the current queue: %d", [currentQueue count]);
 
             break;
@@ -206,6 +215,9 @@
     if (!error)
     {
         NSLog(@"Successfully saved object.");
+        [alertViewAddingSongToQueue dismissWithClickedButtonIndex:0 animated:YES];
+        [alertViewAddingSongToQueue release];
+        alertViewAddingSongToQueue = nil;
         [self dismissModalViewControllerAnimated:YES];
     }
     else {

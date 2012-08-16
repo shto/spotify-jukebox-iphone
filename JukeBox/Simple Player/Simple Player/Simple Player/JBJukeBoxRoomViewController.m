@@ -22,7 +22,7 @@
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
-    if (self) {
+    if (self) {        
         // set the right bar button to "Add new song to queue"
         UIBarButtonItem *addSongToQueueButton = [[UIBarButtonItem alloc] 
                                                  initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
@@ -31,29 +31,27 @@
         self.navigationItem.rightBarButtonItem = addSongToQueueButton;
         [addSongToQueueButton release];
         
-        // timer for refreshing the parse information
-        refreshParseInformationTimer = [NSTimer timerWithTimeInterval:20
-                                                               target:self
-                                                             selector:@selector(refreshParseInformation)
-                                                             userInfo:nil
-                                                              repeats:YES];
-        [[NSRunLoop currentRunLoop] addTimer:refreshParseInformationTimer forMode:NSDefaultRunLoopMode];
+        // add UIToolbar on the bottom of the view
+        barButtonItemRefreshSongs = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
+                                                                                  target:self
+                                                                                  action:@selector(refreshParseInformation)];
+        self.toolbarItems = [NSArray arrayWithObject:barButtonItemRefreshSongs];
         
-        // add observer for parse object information
-        NSString *keyPathToQueue = [@"jukeboxObject." stringByAppendingString:kAttributeJukeBoxQueue];
-        [self addObserver:self
-               forKeyPath:keyPathToQueue
-                  options:NSKeyValueObservingOptionNew
-                  context:nil];
+        // timer for refreshing the parse information
+//        refreshParseInformationTimer = [NSTimer timerWithTimeInterval:20
+//                                                               target:self
+//                                                             selector:@selector(refreshParseInformation)
+//                                                             userInfo:nil
+//                                                              repeats:YES];
+//        [[NSRunLoop currentRunLoop] addTimer:refreshParseInformationTimer forMode:NSDefaultRunLoopMode];
     }
     
     return self;
 }
 
 - (void)dealloc
-{
-    [self removeObserver:self forKeyPath:@"jukeboxObject.queue"];
-    
+{    
+    [barButtonItemRefreshSongs release];
     [jukeboxID release];
     [jukeboxObject release];
     [super dealloc];
@@ -61,12 +59,6 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    NSLog(@"A keypath has changed: %@", keyPath);
-    if ([keyPath isEqualToString:[@"jukeboxObject." stringByAppendingString:kAttributeJukeBoxQueue]])
-    {
-        NSLog(@"Queue has changed!");
-        [self.tableView reloadData];
-    }
 }
 
 // Brings up the user's playlists, so that the user can start choosing the song to add to the queue
@@ -127,11 +119,20 @@
 // Refresh the information we get from Parse
 - (void)refreshParseInformation
 {
-    // get the currently playing track and the current queue    
-    currentQueue = [jukeboxObject objectForKey:kAttributeJukeBoxQueue];
-    currentlyPlayingSongId = [jukeboxObject objectForKey:kAttributeJukeBoxCurrentTrack];
+    // disable the refresh button
+    [barButtonItemRefreshSongs setEnabled:NO];
     
-    [self.tableView reloadData];
+    // refresh object
+    [jukeboxObject refreshInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        // enable the refresh button again
+        [barButtonItemRefreshSongs setEnabled:YES];
+
+        // get the currently playing track and the current queue    
+        currentQueue = [jukeboxObject objectForKey:kAttributeJukeBoxQueue];
+        currentlyPlayingSongId = [jukeboxObject objectForKey:kAttributeJukeBoxCurrentTrack];
+        
+        [self.tableView reloadData];
+    }];
 }
 
 #pragma mark - Table view data source

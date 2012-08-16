@@ -69,7 +69,8 @@
 		return;
 	}
 
-	[[NSUserDefaults standardUserDefaults] setValue:usernameField.text forKey:kUserDefaultsUsernameKey];
+	[[NSUserDefaults standardUserDefaults] setValue:usernameField.text 
+                                             forKey:kUserDefaultsUsernameKey];
 	
 	[[SPSession sharedSession] attemptLoginWithUserName:self.usernameField.text
 											   password:self.passwordField.text
@@ -96,11 +97,11 @@
 	self.spinner.hidden = NO;
 }
 
--(void)session:(SPSession *)aSession didFailToLoginWithError:(NSError *)error; {
-    
-	// Invoked by SPSession after a failed login.
+- (void)loggingInHasFailed
+{
+    // Invoked by SPSession after a failed login.
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login Failed"
-													message:[error localizedDescription]
+													message:@"We could not log you in"
 												   delegate:nil
 										  cancelButtonTitle:@"OK"
 										  otherButtonTitles:nil];
@@ -110,6 +111,10 @@
 	self.passwordField.enabled = YES;
 	self.loginButton.enabled = YES;
 	self.spinner.hidden = YES;
+}
+
+-(void)session:(SPSession *)aSession didFailToLoginWithError:(NSError *)error; {
+    
 }
 
 - (void)didReceiveMemoryWarning

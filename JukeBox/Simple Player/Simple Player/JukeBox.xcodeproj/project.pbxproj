@@ -29,6 +29,7 @@
 		75110053152B7AC6004290C4 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 75110052152B7AC6004290C4 /* libz.1.1.3.dylib */; };
 		75110055152B7ACF004290C4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75110054152B7ACF004290C4 /* Security.framework */; };
 		75110057152B7AD7004290C4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75110056152B7AD7004290C4 /* QuartzCore.framework */; };
+		752D647F155183B7007B9F8F /* JBJukeBoxRoomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 752D647E155183B7007B9F8F /* JBJukeBoxRoomView.xib */; };
 		7567998A1528B0F900EEA7D7 /* JBAllPlaylistsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 756799851528B0F900EEA7D7 /* JBAllPlaylistsTableViewController.m */; };
 		7567998C1528B0F900EEA7D7 /* JBMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 756799891528B0F900EEA7D7 /* JBMainViewController.m */; };
 		7567998F1528B12B00EEA7D7 /* JBMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7567998E1528B12B00EEA7D7 /* JBMainView.xib */; };
@@ -88,6 +89,7 @@
 		75110054152B7ACF004290C4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		75110056152B7AD7004290C4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		75110058152B7B3C004290C4 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		752D647E155183B7007B9F8F /* JBJukeBoxRoomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JBJukeBoxRoomView.xib; sourceTree = "<group>"; };
 		756799841528B0F900EEA7D7 /* JBAllPlaylistsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBAllPlaylistsTableViewController.h; sourceTree = "<group>"; };
 		756799851528B0F900EEA7D7 /* JBAllPlaylistsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBAllPlaylistsTableViewController.m; sourceTree = "<group>"; };
 		756799881528B0F900EEA7D7 /* JBMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBMainViewController.h; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				7567998E1528B12B00EEA7D7 /* JBMainView.xib */,
+				752D647E155183B7007B9F8F /* JBJukeBoxRoomView.xib */,
 			);
 			name = Nibs;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				50FAA136143A02AE00FF06D7 /* SPLoginViewController_iPhone.xib in Resources */,
 				50FAA139143A02B300FF06D7 /* SPLoginViewController_iPad.xib in Resources */,
 				7567998F1528B12B00EEA7D7 /* JBMainView.xib in Resources */,
+				752D647F155183B7007B9F8F /* JBJukeBoxRoomView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

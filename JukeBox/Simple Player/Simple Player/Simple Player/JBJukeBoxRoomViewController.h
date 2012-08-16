@@ -13,6 +13,7 @@
 {
     NSString *jukeboxID;
     PFObject *jukeboxObject;
+    UIBarButtonItem *barButtonItemRefreshSongs;
     
     NSMutableArray *currentQueue;
     NSString *currentlyPlayingSongId;

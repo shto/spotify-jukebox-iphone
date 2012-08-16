@@ -75,6 +75,8 @@
     [jbMainViewController release];    
 
 	sharedSession = [SPSession sharedSession];
+    
+    // set the SPSession's delegate
 	[sharedSession setDelegate:self];
     [self addObserver:self 
            forKeyPath:@"sharedSession.userPlaylists.loaded" 
@@ -82,7 +84,6 @@
               context:nil];
         
     KeyChainHelper *tempKeyChainHelper = [[KeyChainHelper alloc] init];
-//    [[NSUserDefaults standardUserDefaults] setObject:@"1110745591" forKey:kUserDefaultsUsernameKey];
     NSString *username = [[NSUserDefaults standardUserDefaults] stringForKey:kUserDefaultsUsernameKey];
     NSString *password = [tempKeyChainHelper passwordFromKeyChain];
     
@@ -199,7 +200,12 @@
 -(void)session:(SPSession *)aSession didFailToLoginWithError:(NSError *)error; {
     
 	// Invoked by SPSession after a failed login.
-
+    NSLog(@"Failed login.");
+    if ([self.window.rootViewController.modalViewController respondsToSelector:@selector(loggingInHasFailed)])
+    {
+        [self.window.rootViewController.modalViewController loggingInHasFailed];
+    }
+    
 	// Forward to the login view controller
 	if ([self.mainViewController.modalViewController respondsToSelector:_cmd])
 		[self.mainViewController.modalViewController performSelector:_cmd withObject:aSession withObject:error];
